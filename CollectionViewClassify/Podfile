@@ -1,0 +1,8 @@
+platform :'ios', '12.0'
+# ignore all warnings from all pods
+inhibit_all_warnings!
+target 'CollectionViewClassify' do
+#页面布局
+pod 'UICollectionViewLeftAlignedLayout'
+pod 'Masonry'
+end

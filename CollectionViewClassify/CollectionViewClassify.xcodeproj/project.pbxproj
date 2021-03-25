@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		043B6C46260C273900216DDC /* CollectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B6C45260C273900216DDC /* CollectionHeadView.m */; };
+		043B6C4C260C936A00216DDC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043B6C4B260C936A00216DDC /* 1.png */; };
+		043B6C51260C936E00216DDC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043B6C50260C936E00216DDC /* 2.png */; };
 		046038CA2609DF910048232D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046038C92609DF910048232D /* AppDelegate.m */; };
 		046038CD2609DF910048232D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046038CC2609DF910048232D /* SceneDelegate.m */; };
 		046038D02609DF910048232D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046038CF2609DF910048232D /* ViewController.m */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		043B6C44260C273900216DDC /* CollectionHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionHeadView.h; sourceTree = "<group>"; };
 		043B6C45260C273900216DDC /* CollectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionHeadView.m; sourceTree = "<group>"; };
+		043B6C4B260C936A00216DDC /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		043B6C50260C936E00216DDC /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		046038C52609DF910048232D /* CollectionViewClassify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewClassify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046038C82609DF910048232D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		046038C92609DF910048232D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -93,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043B6C4A260C931D00216DDC /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				043B6C4B260C936A00216DDC /* 1.png */,
+				043B6C50260C936E00216DDC /* 2.png */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
 		046038BC2609DF910048232D = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 		046038C72609DF910048232D /* CollectionViewClassify */ = {
 			isa = PBXGroup;
 			children = (
+				043B6C4A260C931D00216DDC /* Picture */,
 				046038C82609DF910048232D /* AppDelegate.h */,
 				046038C92609DF910048232D /* AppDelegate.m */,
 				046038CB2609DF910048232D /* SceneDelegate.h */,
@@ -277,6 +291,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				046038D82609DF920048232D /* LaunchScreen.storyboard in Resources */,
+				043B6C4C260C936A00216DDC /* 1.png in Resources */,
+				043B6C51260C936E00216DDC /* 2.png in Resources */,
 				046038D52609DF920048232D /* Assets.xcassets in Resources */,
 				046038D32609DF910048232D /* Main.storyboard in Resources */,
 			);

@@ -8,6 +8,7 @@
 #import "ViewController.h"
 #import "CollectionViewCell.h"
 #import "CollectionHeadView.h"
+#import "FilterTerm.h"
 
 static float const kCollectionViewToLeftMargin                = 15;
 static float const kCollectionViewToRightMargin               = 15;
@@ -94,6 +95,27 @@ static NSString * const headViewId = @"CollectionHeadView";
         make.bottom.equalTo(self.contView).offset(-13);
     }];
     
+    NSMutableArray *fieldsArray = [NSMutableArray array];
+    for (NSDictionary *dict in self.fieldsArray) {
+        FilterTerm *term = [[FilterTerm alloc] initWithFilterTermDictionary:dict];
+        [fieldsArray addObject:term];
+    }
+    self.fieldsArray = fieldsArray;
+    
+    NSMutableArray *turnsArray = [NSMutableArray array];
+    for (NSDictionary *dict in self.turnsArray) {
+        FilterTerm *term = [[FilterTerm alloc] initWithFilterTermDictionary:dict];
+        [turnsArray addObject:term];
+    }
+    self.turnsArray = turnsArray;
+    
+    NSMutableArray *phasesArray = [NSMutableArray array];
+    for (NSDictionary *dict in self.phasesArray) {
+        FilterTerm *term = [[FilterTerm alloc] initWithFilterTermDictionary:dict];
+        [phasesArray addObject:term];
+    }
+    self.phasesArray = phasesArray;
+    
     self.dataArray = [NSMutableArray arrayWithObjects:self.fieldsArray,self.turnsArray,self.phasesArray,nil];
     [self defaultRowCount:2];
     [self.collectionView reloadData];
@@ -176,20 +198,32 @@ static NSString * const headViewId = @"CollectionHeadView";
     NSInteger filterSection = [[self sections][indexPath.section] integerValue];
     if (filterSection == FilterInvestorAuthSectionField) {
         CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-        NSDictionary *dict = self.fieldsArray[indexPath.item];
-        cell.dict = dict;
+        FilterTerm *term = self.fieldsArray[indexPath.item];
+        cell.term = term;
+        if (term.isSelect) {
+            [cell setSelected:YES];
+            [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        }
         return cell;
     }
     else if (filterSection == FilterInvestorAuthTurn) {
         CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-        NSDictionary *dict = self.turnsArray[indexPath.item];
-        cell.dict = dict;
+        FilterTerm *term = self.turnsArray[indexPath.item];
+        cell.term = term;
+        if (term.isSelect) {
+            [cell setSelected:YES];
+            [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        }
         return cell;
     }
     else if (filterSection == FilterInvestorAuthPhase) {
         CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-        NSDictionary *dict = self.phasesArray[indexPath.item];
-        cell.dict = dict;
+        FilterTerm *term = self.phasesArray[indexPath.item];
+        cell.term = term;
+        if (term.isSelect) {
+            [cell setSelected:YES];
+            [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        }
         return cell;
     }
     else {
@@ -207,17 +241,23 @@ static NSString * const headViewId = @"CollectionHeadView";
     NSInteger filterSection = [[self sections][indexPath.section] integerValue];
     if (filterSection == FilterInvestorAuthSectionField) {
         if (![self.fieldsSelectArray containsObject:self.fieldsArray[indexPath.item]]) {
-            [self.fieldsSelectArray addObject:[self.fieldsArray objectAtIndex:indexPath.item]];
+            FilterTerm *term = self.fieldsArray[indexPath.row];
+            term.isSelect = YES;
+            [self.fieldsSelectArray addObject:self.fieldsArray[indexPath.row]];
         }
     }
     else if (filterSection == FilterInvestorAuthTurn) {
         if (![self.turnsSelectArray containsObject:self.turnsArray[indexPath.item]]) {
-            [self.turnsSelectArray addObject:[self.turnsArray objectAtIndex:indexPath.row]];
+            FilterTerm *term = self.turnsArray[indexPath.row];
+            term.isSelect = YES;
+            [self.turnsSelectArray addObject:self.turnsArray[indexPath.row]];
         }
     }
     else if (filterSection == FilterInvestorAuthPhase) {
         if (![self.phasesSelectArray containsObject:self.phasesArray[indexPath.item]]) {
-            [self.phasesSelectArray addObject:[self.phasesArray objectAtIndex:indexPath.item]];
+            FilterTerm *term = self.phasesArray[indexPath.row];
+            term.isSelect = YES;
+            [self.phasesSelectArray addObject:self.phasesArray[indexPath.row]];
         }
     }
     else {}
@@ -227,16 +267,22 @@ static NSString * const headViewId = @"CollectionHeadView";
     NSInteger filterSection = [[self sections][indexPath.section] integerValue];
     if (filterSection == FilterInvestorAuthSectionField) {
         if ([self.fieldsSelectArray containsObject:self.fieldsArray[indexPath.item]]) {
+            FilterTerm *term = self.fieldsArray[indexPath.row];
+            term.isSelect = NO;
             [self.fieldsSelectArray removeObject:self.fieldsArray[indexPath.row]];
         }
     }
     else if (filterSection == FilterInvestorAuthTurn) {
         if ([self.turnsSelectArray containsObject:self.turnsArray[indexPath.item]]) {
-            [self.turnsSelectArray removeObject:self.turnsArray[indexPath.item]];
+            FilterTerm *term = self.turnsArray[indexPath.row];
+            term.isSelect = NO;
+            [self.turnsSelectArray removeObject:self.turnsArray[indexPath.row]];
         }
     }
     else if (filterSection == FilterInvestorAuthPhase) {
         if ([self.phasesSelectArray containsObject:self.phasesArray[indexPath.item]]) {
+            FilterTerm *term = self.phasesArray[indexPath.row];
+            term.isSelect = NO;
             [self.phasesSelectArray removeObject:self.phasesArray[indexPath.item]];
         }
     }
@@ -295,18 +341,18 @@ static NSString * const headViewId = @"CollectionHeadView";
     NSInteger filterSection = [[self sections][indexPath.section] integerValue];
     switch (filterSection) {
         case FilterInvestorAuthSectionField: {
-            NSDictionary *dict = self.fieldsArray[indexPath.row];
-            float cellWidth = [self collectionCellWidthText:dict[@"title"]];
+            FilterTerm *term = self.fieldsArray[indexPath.row];
+            float cellWidth = [self collectionCellWidthText:term.title];
             return CGSizeMake(cellWidth, kCollectionViewCellHeight);
         } break;
         case FilterInvestorAuthTurn: {
-            NSDictionary *dict = self.turnsArray[indexPath.row];
-            float cellWidth = [self collectionCellWidthText:dict[@"title"]];
+            FilterTerm *term = self.turnsArray[indexPath.row];
+            float cellWidth = [self collectionCellWidthText:term.title];
             return CGSizeMake(cellWidth, kCollectionViewCellHeight);
         } break;
         case FilterInvestorAuthPhase: {
-            NSDictionary *dict = self.phasesArray[indexPath.row];
-            float cellWidth = [self collectionCellWidthText:dict[@"title"]];
+            FilterTerm *term = self.phasesArray[indexPath.row];
+            float cellWidth = [self collectionCellWidthText:term.title];
             return CGSizeMake(cellWidth, kCollectionViewCellHeight);
         } break;
         default: {
@@ -437,8 +483,8 @@ static NSString * const headViewId = @"CollectionHeadView";
     float currentCellWidthSum = 0;
     float currentCellSpace = 0;
     for (int i = 0; i < array.count; i++) {
-        NSDictionary *dict = array[i];
-        NSString *text = dict[@"title"];
+        FilterTerm *term = array[i];
+        NSString *text = term.title;
         float cellWidth = [self collectionCellWidthText:text];
         if (cellWidth >= contentViewWidth) {
             return i == 0 ? 1 : firstRowCellCount;
@@ -532,11 +578,13 @@ static NSString * const headViewId = @"CollectionHeadView";
 
 - (NSMutableArray *)fieldsArray {
     if (!_fieldsArray) {
-        _fieldsArray = [NSMutableArray arrayWithObjects:@{@"title":@"人工智能"},@{@"title":@"金融"},@{@"title":@"互联网"},
-                             @{@"title":@"医疗服务"},@{@"title":@"文化娱乐"},
-                             @{@"title":@"生活服务"},@{@"title":@"教育"},@{@"title":@"游戏"},
-                             @{@"title":@"电商"},@{@"title":@"旅游"},@{@"title":@"广告营销"},
-                             @{@"title":@"餐饮"},@{@"title":@"媒体"},@{@"title":@"企业服务"},
+        _fieldsArray = [NSMutableArray arrayWithObjects:@{@"title":@"人工智能"},@{@"title":@"金融"},
+                             @{@"title":@"互联网"},@{@"title":@"医疗服务"},
+                             @{@"title":@"文化娱乐"},@{@"title":@"生活服务"},
+                             @{@"title":@"教育"},@{@"title":@"游戏"},
+                             @{@"title":@"电商"},@{@"title":@"旅游"},
+                             @{@"title":@"广告营销"},@{@"title":@"餐饮"},
+                             @{@"title":@"媒体"},@{@"title":@"企业服务"},
                              @{@"title":@"技术服务"},@{@"title":@"硬件设备"},
                              @{@"title":@"药品器械"},@{@"title":@"电信通讯"},
                              @{@"title":@"半导体"},@{@"title":@"住房装潢"},
@@ -553,8 +601,8 @@ static NSString * const headViewId = @"CollectionHeadView";
 
 - (NSMutableArray *)turnsArray {
     if (!_turnsArray) {
-        _turnsArray = [NSMutableArray arrayWithObjects:@{@"title":@"天使轮"},@{@"title":@"Pre-A"},@{@"title":@"A轮"},
-                             @{@"title":@"B轮"},@{@"title":@"C轮"},
+        _turnsArray = [NSMutableArray arrayWithObjects:@{@"title":@"天使轮"},@{@"title":@"Pre-A"},
+                             @{@"title":@"A轮"},@{@"title":@"B轮"},@{@"title":@"C轮"},
                              @{@"title":@"D轮"},@{@"title":@"E轮"},@{@"title":@"F轮"},
                              @{@"title":@"Pre-IPO"},@{@"title":@"PIPE"},nil];
     }
@@ -563,8 +611,8 @@ static NSString * const headViewId = @"CollectionHeadView";
 
 - (NSMutableArray *)phasesArray {
     if (!_phasesArray) {
-        _phasesArray = [NSMutableArray arrayWithObjects:@{@"title":@"天使期"},@{@"title":@"初创期"},@{@"title":@"成长期"},
-                             @{@"title":@"成熟期"},nil];
+        _phasesArray = [NSMutableArray arrayWithObjects:@{@"title":@"天使期"},@{@"title":@"初创期"},
+                             @{@"title":@"成长期"},@{@"title":@"成熟期"},nil];
     }
     return _phasesArray;
 }

@@ -6,6 +6,7 @@
 //
 
 #import "CollectionViewCell.h"
+#import "FilterTerm.h"
 
 @interface CollectionViewCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -36,10 +37,10 @@
     return self;
 }
 
-- (void)setDict:(NSDictionary *)dict {
-    _dict = dict;
+- (void)setTerm:(FilterTerm *)term {
+    _term = term;
     
-    self.titleLabel.text = _dict[@"title"];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@",_term.title];
 }
 
 - (void)setSelected:(BOOL)selected {

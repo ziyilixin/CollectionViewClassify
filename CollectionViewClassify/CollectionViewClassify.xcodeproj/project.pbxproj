@@ -10,6 +10,7 @@
 		043B6C46260C273900216DDC /* CollectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B6C45260C273900216DDC /* CollectionHeadView.m */; };
 		043B6C4C260C936A00216DDC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043B6C4B260C936A00216DDC /* 1.png */; };
 		043B6C51260C936E00216DDC /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 043B6C50260C936E00216DDC /* 2.png */; };
+		043B6C5D260D79AE00216DDC /* FilterTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B6C5C260D79AE00216DDC /* FilterTerm.m */; };
 		046038CA2609DF910048232D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046038C92609DF910048232D /* AppDelegate.m */; };
 		046038CD2609DF910048232D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046038CC2609DF910048232D /* SceneDelegate.m */; };
 		046038D02609DF910048232D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046038CF2609DF910048232D /* ViewController.m */; };
@@ -45,6 +46,8 @@
 		043B6C45260C273900216DDC /* CollectionHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionHeadView.m; sourceTree = "<group>"; };
 		043B6C4B260C936A00216DDC /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		043B6C50260C936E00216DDC /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		043B6C5B260D79AD00216DDC /* FilterTerm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterTerm.h; sourceTree = "<group>"; };
+		043B6C5C260D79AE00216DDC /* FilterTerm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterTerm.m; sourceTree = "<group>"; };
 		046038C52609DF910048232D /* CollectionViewClassify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewClassify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046038C82609DF910048232D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		046038C92609DF910048232D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				043B6C45260C273900216DDC /* CollectionHeadView.m */,
 				046039092609F0E90048232D /* CollectionViewCell.h */,
 				0460390A2609F0E90048232D /* CollectionViewCell.m */,
+				043B6C5B260D79AD00216DDC /* FilterTerm.h */,
+				043B6C5C260D79AE00216DDC /* FilterTerm.m */,
 				046038CE2609DF910048232D /* ViewController.h */,
 				046038CF2609DF910048232D /* ViewController.m */,
 				046038D12609DF910048232D /* Main.storyboard */,
@@ -347,6 +352,7 @@
 				046038D02609DF910048232D /* ViewController.m in Sources */,
 				0460390B2609F0E90048232D /* CollectionViewCell.m in Sources */,
 				046038CA2609DF910048232D /* AppDelegate.m in Sources */,
+				043B6C5D260D79AE00216DDC /* FilterTerm.m in Sources */,
 				046038DB2609DF920048232D /* main.m in Sources */,
 				043B6C46260C273900216DDC /* CollectionHeadView.m in Sources */,
 				046038CD2609DF910048232D /* SceneDelegate.m in Sources */,

@@ -52,7 +52,6 @@ static float const kFoldButtonWidth  = 72;
         foldButton.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, -20);
         foldButton.frame = CGRectMake(ScreenWidth - 6 - kFoldButtonWidth, 0, kFoldButtonWidth, 35);
         foldButton.hidden = YES;
-//        foldButton.backgroundColor = [UIColor redColor];
         [foldButton addTarget:self action:@selector(onClickFold:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:foldButton];
         self.foldButton = foldButton;
